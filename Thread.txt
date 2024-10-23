@@ -1,0 +1,58 @@
+package addition;
+class room{
+    public synchronized void takesLecture(String name)throws InterruptedException{
+        System.out.println(name+ "Enters...");
+        Thread.sleep(250);
+        System.out.println(name+ "start lecture...");
+        Thread.sleep(500);
+        System.out.println(name+ "Exit..");
+        Thread.sleep(250);
+    }
+}
+class lecture implements Runnable
+{
+    String name;
+    room r;
+    Thread t;
+    lecture(String n,room r) {
+        name=n;
+        t=new Thread(this,n);
+        this.r=r;
+    }
+    public void start()
+    {
+        t.start();
+    }
+    public void run(){
+        try{
+            r.takesLecture(name);
+        }
+        catch(InterruptedException e)
+        {
+            System.out.println(name+"operation interrupted...");
+        }
+    }   
+}
+public class synch_access {
+    public static void main(String args[]){
+    room r=new room();
+    lecture ABC=new lecture("ABC Sir",r);
+    lecture MNO=new lecture("MNO Sir",r);
+    lecture PQR=new lecture("PQR Sir",r);
+    ABC.start();
+    MNO.start();
+    PQR.start();
+    }
+}
+
+
+OUTPUT: ABC SirEnters...
+ABC Sirstart lecture...
+ABC SirExit..
+PQR SirEnters...
+PQR Sirstart lecture...
+PQR SirExit..
+MNO SirEnters...
+MNO Sirstart lecture...
+MNO SirExit..
+BUILD SUCCESSFUL (total time: 3 seconds)

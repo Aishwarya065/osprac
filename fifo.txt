@@ -1,0 +1,89 @@
+Skip to main content
+Google Classroom
+Classroom
+SYCS
+Sem-III
+Home
+Calendar
+Enrolled
+To-do
+S
+SYCS
+Computer Science
+S
+SYCS
+Sem-III
+S
+SYBSC (CS) 2024-25
+S
+SYCS(JBAD Sem III 2024)
+S
+SYCS 24-25 SEM-III
+Green Technologies
+S
+Sycs 24-25
+Web technologies sem 3
+F
+FYCS SEM 2 2023-24 Statistical Methods
+F
+FY BSC CS DATABASE SYSTEM
+F
+FY CS 23-24 OOPs using C++
+Semester-II
+Archived classes
+Settings
+FIFOFIFO
+import java.util.*;
+import java.io.*;
+class FIFO
+{
+public static void main(String args[]) throws IOException
+{
+int fifo[] = new int[4];
+int n;
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+System.out.println("Enter the number of inputs: ");
+n = Integer.parseInt(br.readLine());
+int inp[] = new int[n];
+System.out.println("Enter the Inputs: ");
+for(int i =0; i<n; i++)
+inp[i] = Integer.parseInt(br.readLine());
+System.out.println(" ");
+for(int i= 0; i < 4; i++)
+  fifo[i]= -1;
+int Hit = 0;
+int Fault = 0;
+int j = 0;
+boolean check;
+for (int i = 0; i<n; i++)
+{
+check=false;
+for (int k = 0; k < 4; k++)
+if (fifo[k] == inp[i])
+{
+check=true;
+Hit = Hit + 1;
+}
+if(check==false)
+{
+fifo[j] = inp[i];
+j++;
+if (j >= 4)
+j=0;
+Fault = Fault + 1;
+}
+}
+System.out.println("HIT: "+ Hit +" FAULT: " + Fault);
+
+}
+}
+FIFO.txt
+Displaying FIFO.txt.
+FIFO
+Kavita Chouk
+•
+Oct 7
+
+FIFO.txt
+Text
+Class comments

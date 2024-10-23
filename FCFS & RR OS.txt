@@ -1,0 +1,141 @@
+package fcfs;
+import java.util.*;
+
+
+public class FCFS {
+
+   
+    public static void main(String[] args) {
+        int n;
+        float avgwt,avgta;
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("enter no of process");
+            n = sc.nextInt();
+            int pid[]=new int[n];
+            int ar[]=new int[n];
+            int bt[]=new int[n];
+            int ct[]=new int[n];
+            int ta[]=new int[n];
+            int wt[]=new int[n];
+            int temp;
+            avgwt = 0;
+            avgta = 0;
+            for (int i=0;i<n;i++)
+            {
+                System.out.println("enter process"+(i+1)+"arrival time:");
+                ar[i]=sc.nextInt();
+                System.out.println("enter process"+(i+1)+"burst time:");
+                bt[i]=sc.nextInt();
+                pid[i]=i+1;
+            }   for(int i=0;i<n;i++)
+            {
+                for(int j=0;j<n-(i+1);j++)
+                {
+                    if(ar[j]>ar[j+1])
+                    {
+                        temp=ar[j];
+                        ar[j]=ar[j+1];
+                        ar[j+1]=temp;
+                        temp=bt[j];
+                        bt[j]=bt[j+1];
+                        bt[j+1]=temp;
+                        temp=pid[j];
+                        pid[j]=pid[j+1];
+                        pid[j+1]=temp;
+                        
+                    }
+                }
+            }   for(int i=0;i<n;i++)
+            {
+                if(i==0)
+                {
+                    ct[i]=ar[i]+bt[i];
+                }
+                else
+                {
+                    if(ar[i]>ct[i-1])
+                    {
+                        ct[i]=ar[i]+bt[i];
+                    }
+                    else
+                        
+                        ct[i]=ar[i-1]+bt[i];
+                }
+                ta[i]=ct[i]-ar[i];
+                wt[i]=ta[i]-bt[i];
+                avgwt+=wt[i];
+                avgta+=ta[i];
+            
+            }   System.out.println("\npid arrival brust complete turn waiting");
+            for(int i=0;i<n;i++)
+            {
+                System.out.println(pid[i]+"\t"+ar[i]+"\t"+bt[i]+"\t"+ct[i]+"\t"+ta[i]+"\t"+wt[i]+"\t");
+            }
+        }
+                
+        System.out.println("\n waiting time:"+avgwt);
+        System.out.println("\n turnaround time:"+avgta);
+        System.out.println("\naverage waiting time:"+(avgwt/n));
+        System.out.println("\naverage turnaround time:"+(avgta/n));
+        
+        
+    }
+    
+}
+
+
+
+round robin
+package rr;
+
+import java.util.Scanner;
+public class RR
+{
+    
+    public static void main(String[] args) {
+        
+        Scanner sc=new Scanner(System.in);
+        int wtime[],btime[],rtime[],num,quantum,total;
+        wtime=new int[10];
+        btime=new int[10];
+        rtime=new int[10];
+        System.out.println("Enter number of processes(max 10):");
+        num=sc.nextInt();
+        System.out.println("Enter burst time");
+        for(int i=0; i<num;i++){
+            System.out.print("\nP["+(i+1)+"]:");
+            btime[i]=sc.nextInt();
+            rtime[i]=btime[i];
+            wtime[i]=0;
+        }
+                
+        System.out.println("\n\n Enter Quantum:");
+        quantum=sc.nextInt();
+        int rp=num;
+        int i=0;
+        int time=0;
+        System.out.print("0");
+        wtime[0]=0;
+        while(rp!=0){
+             if(rtime[i]>quantum)
+             {
+                 rtime[i]=rtime[i]-quantum;
+                 System.out.print("[P["+(g+1)+"]");
+                 time+=quantum;
+                 System.out.print(time);
+             }
+             else if(rtime[i]<=quantum && rtime[i]>0)
+                 time+=rtime[i];
+             rtime[i]=rtime[1]-rtime[1];
+             System.out.print(time);
+        }
+        i++;
+        if(i==num)
+        {
+            i=0;
+        }                 
+    }
+    
+}
+
+
